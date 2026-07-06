@@ -191,8 +191,6 @@ Academic project for Software Engineering course.
 
 # ✅ D) RUP REPORT – Full Academic Version
 
-Τώρα πάμε στο δυνατό κομμάτι.
-
 ---
 
 # 📘 RUP DOCUMENT STRUCTURE
