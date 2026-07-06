@@ -1,0 +1,17 @@
+@page "{id:int}"
+@model TaskManager.Pages.Tasks.DeleteModel
+@{
+    ViewData["Title"] = "Delete Task";
+}
+
+<div class="sf-card">
+    <h3 class="mb-2 text-danger">Delete Task</h3>
+    <div class="text-muted mb-3">This action cannot be undone.</div>
+
+    <div class="mb-3 fw-semibold">@Model.Task!.Title</div>
+
+    <form method="post">
+        <button class="btn btn-danger" type="submit">Yes, delete</button>
+        <a class="btn btn-link" asp-page="Details" asp-route-id="@Model.Task.Id">Cancel</a>
+    </form>
+</div>

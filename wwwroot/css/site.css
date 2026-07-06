@@ -1,0 +1,33 @@
+.sf-bg { background: #f4f6f9; }
+
+.sf-topbar {
+  background: #1b4f9c;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.sf-logo {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.sf-tabs { display: flex; gap: 8px; }
+
+.sf-tab {
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.sf-tab:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+.sf-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+}

@@ -1,0 +1,77 @@
+﻿@page
+@model TaskManager.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">My Tasks</h3>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-page="/Tasks/Create">New Task</a>
+        <a class="btn btn-outline-secondary" asp-page="/Tasks/Index">View All</a>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-3">
+        <div class="sf-card">
+            <div class="text-muted">ToDo</div>
+            <div class="display-6">@Model.Count(TaskManager.Domain.Enums.TaskStatus.ToDo)</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sf-card">
+            <div class="text-muted">In Progress</div>
+            <div class="display-6">@Model.Count(TaskManager.Domain.Enums.TaskStatus.InProgress)</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sf-card">
+            <div class="text-muted">Blocked</div>
+            <div class="display-6">@Model.Count(TaskManager.Domain.Enums.TaskStatus.Blocked)</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sf-card">
+            <div class="text-muted">Done</div>
+            <div class="display-6">@Model.Count(TaskManager.Domain.Enums.TaskStatus.Done)</div>
+        </div>
+    </div>
+</div>
+
+<div class="sf-card">
+    <h5 class="mb-3">Recent Tasks</h5>
+
+    @if (Model.RecentTasks.Count == 0)
+    {
+        <div class="text-muted">No tasks yet. Create your first task.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Project</th>
+                        <th style="width: 140px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var t in Model.RecentTasks)
+                {
+                    <tr>
+                        <td class="fw-semibold">@t.Title</td>
+                        <td>@t.Status</td>
+                        <td>@t.Project.Name</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary" asp-page="/Tasks/Details" asp-route-id="@t.Id">Open</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

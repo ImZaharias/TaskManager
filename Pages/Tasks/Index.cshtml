@@ -1,0 +1,72 @@
+@page
+@model TaskManager.Pages.Tasks.IndexModel
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">Tasks</h3>
+    <a class="btn btn-primary" asp-page="Create">New Task</a>
+</div>
+
+<div class="sf-card mb-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-5">
+            <label class="form-label">Search</label>
+            <input class="form-control" name="q" value="@Model.Q" placeholder="Title..." />
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select class="form-select" name="status">
+                <option value="">(All)</option>
+                @foreach (var s in Model.StatusOptions)
+                {
+                    <option value="@s.Value" selected="@(Model.Status == s.Value)">@s.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-outline-secondary" type="submit">Filter</button>
+            <a class="btn btn-link" asp-page="Index">Clear</a>
+        </div>
+    </form>
+</div>
+
+<div class="sf-card">
+    @if (Model.Tasks.Count == 0)
+    {
+        <div class="text-muted">No tasks found.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Project</th>
+                        <th>Assigned</th>
+                        <th style="width: 220px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var t in Model.Tasks)
+                {
+                    <tr>
+                        <td class="fw-semibold">@t.Title</td>
+                        <td>@t.Status</td>
+                        <td>@t.Project.Name</td>
+                        <td>@(t.AssignedToUser?.DisplayName ?? "-")</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" asp-page="Details" asp-route-id="@t.Id">Open</a>
+                            <a class="btn btn-sm btn-outline-secondary" asp-page="Edit" asp-route-id="@t.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-page="Delete" asp-route-id="@t.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

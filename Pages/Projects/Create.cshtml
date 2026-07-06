@@ -1,0 +1,29 @@
+@page
+@model TaskManager.Pages.Projects.CreateModel
+@{
+    ViewData["Title"] = "New Project";
+}
+
+<div class="sf-card">
+    <h3 class="mb-3">New Project</h3>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" asp-for="Input.Name" />
+            <span class="text-danger" asp-validation-for="Input.Name"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" asp-for="Input.Description" rows="3"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Create</button>
+        <a class="btn btn-link" asp-page="Index">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

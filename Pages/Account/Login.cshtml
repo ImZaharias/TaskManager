@@ -1,0 +1,38 @@
+@page
+@model TaskManager.Pages.Account.LoginModel
+@{
+    Layout = "_PublicLayout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="container" style="max-width: 420px;">
+    <div class="sf-card mt-5">
+        <h3 class="mb-3">Sign in</h3>
+
+        @if (!string.IsNullOrWhiteSpace(Model.Error))
+        {
+            <div class="alert alert-danger">@Model.Error</div>
+        }
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control" asp-for="Email" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" asp-for="Password" type="password" />
+            </div>
+
+            <button class="btn btn-primary w-100" type="submit">Login</button>
+
+            <div class="text-muted mt-3" style="font-size: 0.9rem;">
+                Seed users:
+                <div><code>dimitris@local</code> / <code>Dimitris123!</code></div>
+                <div><code>zach@local</code> / <code>Zach123!</code></div>
+                <div><code>admin@local</code> / <code>Admin123!</code></div>
+                
+            </div>
+        </form>
+    </div>
+</div>

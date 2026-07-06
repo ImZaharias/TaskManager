@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TaskManager</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="sf-bg">
+    <header class="sf-topbar">
+        <div class="container d-flex align-items-center justify-content-between py-2">
+            <div class="d-flex align-items-center gap-3">
+                <div class="sf-logo">TaskManager</div>
+                <nav class="sf-tabs">
+                    <a class="sf-tab" asp-page="/Index">Home</a>
+                    <a class="sf-tab" asp-page="/Projects/Index">Projects</a>
+                    <a class="sf-tab" asp-page="/Tasks/Index">Tasks</a>
+
+                    @if (User?.FindFirst("isAdmin")?.Value == "true")
+                    {
+                        <a class="sf-tab" asp-page="/Users/Index">Users</a>
+                    }
+            </div>
+
+            @{
+                var userName = User?.Identity?.IsAuthenticated == true
+                    ? User.Identity.Name
+                    : "Guest";
+            }
+
+            <div class="d-flex align-items-center gap-3 text-white">
+                <span class="opacity-75">Hello, @userName</span>
+                <a class="btn btn-sm btn-outline-light" asp-page="/Account/Logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
